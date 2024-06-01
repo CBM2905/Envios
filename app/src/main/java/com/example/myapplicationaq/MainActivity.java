@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        final int aIte = R.id.id;
-        if(item.getItemId() == R.id.id){
+
+        if(item.getItemId() == R.id.InicioSesion){
             Intent i = new Intent(MainActivity.this, LogInActivity.class);
             startActivity(i);
             return true;

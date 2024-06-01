@@ -2,8 +2,10 @@ package com.example.myapplicationaq;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.PopupMenu;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class LogInActivity extends AppCompatActivity {
+public class LogInActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
     EditText email;
     EditText Password;
     @Override
@@ -32,13 +34,34 @@ public class LogInActivity extends AppCompatActivity {
                 String EmailT = email.getText().toString();
                 String PasswordT = Password.getText().toString();
                 if(EmailT.equals("Admin") && PasswordT.equals("012345")){
-                    Intent admin = new Intent(LogInActivity.this, AdminActivity.class);
-                    startActivity(admin);
+                    Intent Admin = new Intent(LogInActivity.this, AdminActivity.class);
+                    startActivity(Admin);
                 }
                 else{
-                    Intent I = new Intent(LogInActivity.this, HomeActivity.class);
+                    Intent Home = new Intent(LogInActivity.this,HomeActivity.class);
+                    startActivity(Home);
                 }
             }
         });
+        findViewById(R.id.menuButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(LogInActivity.this,v);
+                popupMenu.setOnMenuItemClickListener(LogInActivity.this::onMenuItemClick);
+                popupMenu.inflate(R.menu.menu);
+                popupMenu.show();
+
+            }
+        });
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        int itemId = item.getItemId();
+        if(itemId == R.id.Registro){
+            Intent registro = new Intent(LogInActivity.this,SignUpActivity.class);
+            startActivity(registro);
+        }
+        return false;
     }
 }

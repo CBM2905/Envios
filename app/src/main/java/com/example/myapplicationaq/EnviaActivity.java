@@ -1,10 +1,13 @@
 package com.example.myapplicationaq;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -13,7 +16,7 @@ import androidx.cardview.widget.CardView;
 
 import java.util.Calendar;
 
-public class EnviaActivity extends AppCompatActivity {
+public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
     private CardView cardView1;
     private CardView cardView2;
@@ -30,6 +33,16 @@ public class EnviaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_envia);
 
+        findViewById(R.id.menuButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(EnviaActivity.this,v);
+                popupMenu.setOnMenuItemClickListener(EnviaActivity.this::onMenuItemClick);
+                popupMenu.inflate(R.menu.menu);
+                popupMenu.show();
+
+            }
+        });
         // Obtén referencias a los CardView, botones y elementos de la vista
         cardView1 = findViewById(R.id.cardView1);
         cardView2 = findViewById(R.id.cardView2);
@@ -212,6 +225,23 @@ public class EnviaActivity extends AppCompatActivity {
             // Si ninguna de las condiciones anteriores se cumple, llama al comportamiento predeterminado
             super.onBackPressed();
         }
+
     }
 
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        int itemId = item.getItemId();
+        if(R.id.HistorialItem == itemId){
+            Intent I = new Intent(EnviaActivity.this,HistorialActivity.class);
+            startActivity(I);
+            return true;
+        }
+        else if (itemId == R.id.LogOut){
+            Intent I = new Intent(EnviaActivity.this,HomeActivity.class);
+            startActivity(I);
+            return true;
+        }
+
+        return false;
+    }
 }

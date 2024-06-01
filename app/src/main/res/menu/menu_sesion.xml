@@ -2,11 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/LogOut"
+        android:title="Salir" />
+    <item
         android:id="@+id/EnviaItem"
         android:title="Envia" />
     <item
         android:id="@+id/HistorialItem"
         android:title="Historial" />
-    <item android:title="Item" />
     <item android:title="Item" />
 </menu>

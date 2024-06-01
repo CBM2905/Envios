@@ -29,7 +29,7 @@ public class HistorialActivity extends AppCompatActivity implements PopupMenu.On
             public void onClick(View v) {
                 PopupMenu popupMenu = new PopupMenu(HistorialActivity.this,v);
                 popupMenu.setOnMenuItemClickListener(HistorialActivity.this::onMenuItemClick);
-                popupMenu.inflate(R.menu.menu);
+                popupMenu.inflate(R.menu.menu_sesion);
                 popupMenu.show();
 
             }

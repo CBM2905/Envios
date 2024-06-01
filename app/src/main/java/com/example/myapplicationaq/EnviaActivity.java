@@ -38,7 +38,7 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
             public void onClick(View v) {
                 PopupMenu popupMenu = new PopupMenu(EnviaActivity.this,v);
                 popupMenu.setOnMenuItemClickListener(EnviaActivity.this::onMenuItemClick);
-                popupMenu.inflate(R.menu.menu);
+                popupMenu.inflate(R.menu.menu_sesion);
                 popupMenu.show();
 
             }

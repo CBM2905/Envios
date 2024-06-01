@@ -77,7 +77,7 @@
                 android:layout_height="15dp" />
 
             <EditText
-                android:id="@+id/editText1"
+                android:id="@+id/IdPaquete"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ececec"
@@ -161,7 +161,7 @@
                     android:layout_weight="1" />
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/AdminButton1"
                     android:layout_width="121dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -175,7 +175,7 @@
                     android:layout_weight="1" />
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/AdminButton2"
                     android:layout_width="121dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

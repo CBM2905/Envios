@@ -45,6 +45,11 @@ public class HistorialActivity extends AppCompatActivity implements PopupMenu.On
             return true;
         }
         else if (itemId == R.id.LogOut){
+            Intent it = new Intent(HistorialActivity.this,MainActivity.class);
+            startActivity(it);
+            return true;
+        }
+        else if (itemId == R.id.Home){
             Intent it = new Intent(HistorialActivity.this,HomeActivity.class);
             startActivity(it);
             return true;

@@ -51,8 +51,8 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
         cardView5 = findViewById(R.id.cardView5);
         cardView6 = findViewById(R.id.cardView6);
 
-        Button button = findViewById(R.id.button);
-        Button button2 = findViewById(R.id.button2);
+        Button button = findViewById(R.id.AdminButton1);
+        Button button2 = findViewById(R.id.AdminButton2);
         Button button3 = findViewById(R.id.button3);
         Button buttonCalendar = findViewById(R.id.button_calendar);
         Button buttonCalendarCard4 = findViewById(R.id.button_calendar_card4);
@@ -237,11 +237,15 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
             return true;
         }
         else if (itemId == R.id.LogOut){
+            Intent I = new Intent(EnviaActivity.this,MainActivity.class);
+            startActivity(I);
+            return true;
+        }
+        else if (itemId == R.id.Home){
             Intent I = new Intent(EnviaActivity.this,HomeActivity.class);
             startActivity(I);
             return true;
         }
-
         return false;
     }
 }

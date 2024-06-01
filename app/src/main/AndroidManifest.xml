@@ -13,19 +13,22 @@
         android:theme="@style/Theme.MyApplicationaq"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity6"
+            android:name=".AdminActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity5"
+            android:name=".HistorialActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity4"
+            android:name=".HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity3"
+            android:name=".EnviaActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LogInActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

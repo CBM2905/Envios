@@ -13,7 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity5 extends AppCompatActivity implements PopupMenu
+public class HomeActivity extends AppCompatActivity implements PopupMenu
 
         .OnMenuItemClickListener {
 
@@ -21,7 +21,7 @@ public class MainActivity5 extends AppCompatActivity implements PopupMenu
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main5);
+        setContentView(R.layout.activity_home);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main5), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -31,8 +31,8 @@ public class MainActivity5 extends AppCompatActivity implements PopupMenu
         Ibtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopupMenu popupMenu = new PopupMenu(MainActivity5.this,v)  ;
-                popupMenu.setOnMenuItemClickListener(MainActivity5.this::onMenuItemClick);
+                PopupMenu popupMenu = new PopupMenu(HomeActivity.this,v)  ;
+                popupMenu.setOnMenuItemClickListener(HomeActivity.this::onMenuItemClick);
                 popupMenu.inflate(R.menu.menu_sesion);
                 popupMenu.show();
             }
@@ -43,12 +43,12 @@ public class MainActivity5 extends AppCompatActivity implements PopupMenu
     public boolean onMenuItemClick(MenuItem item) {
         int itemId = item.getItemId();
         if(itemId == R.id.EnviaItem){
-            Intent envia = new Intent(MainActivity5.this,MainActivity4.class);
+            Intent envia = new Intent(HomeActivity.this, EnviaActivity.class);
             startActivity(envia);
             return true;
         }
         else if (itemId == R.id.HistorialItem){
-            Intent historial = new Intent(MainActivity5.this,MainActivity6.class);
+            Intent historial = new Intent(HomeActivity.this, HistorialActivity.class);
             startActivity(historial);
             return true;
         }

@@ -2,9 +2,7 @@ package com.example.myapplicationaq;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -15,8 +13,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.util.zip.Inflater;
-import android.view.Menu;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 
@@ -43,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 popupMenu.show();
             }
         });
-        Intent i = new Intent(this, MainActivity2.class);
+        Intent i = new Intent(this, LogInActivity.class);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,12 +59,12 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     public boolean onMenuItemClick(MenuItem item) {
         final int aIte = R.id.id;
         if(item.getItemId() == R.id.id){
-            Intent i = new Intent(MainActivity.this,MainActivity2.class);
+            Intent i = new Intent(MainActivity.this, LogInActivity.class);
             startActivity(i);
             return true;
         }
         else{
-            Intent I = new Intent(MainActivity.this,MainActivity3.class);
+            Intent I = new Intent(MainActivity.this, SignUpActivity.class);
             startActivity(I);
             return true;
         }

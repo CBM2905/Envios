@@ -5,7 +5,7 @@
     android:id="@+id/main4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity4">
+    tools:context=".EnviaActivity">
 
     <LinearLayout
         android:id="@+id/linearLayoutEnvia"

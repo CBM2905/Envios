@@ -3,22 +3,17 @@ package com.example.myapplicationaq;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Calendar;
 
-public class MainActivity4 extends AppCompatActivity {
+public class EnviaActivity extends AppCompatActivity {
 
     private CardView cardView1;
     private CardView cardView2;
@@ -33,7 +28,7 @@ public class MainActivity4 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main4);
+        setContentView(R.layout.activity_envia);
 
         // Obtén referencias a los CardView, botones y elementos de la vista
         cardView1 = findViewById(R.id.cardView1);

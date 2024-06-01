@@ -24,7 +24,7 @@ public class SignUpActivity extends AppCompatActivity implements PopupMenu.OnMen
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        findViewById(R.id.menuButton).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.menuButton3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PopupMenu popupMenu = new PopupMenu(SignUpActivity.this,v);

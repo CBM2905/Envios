@@ -11,6 +11,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class EstadoActivity extends AppCompatActivity {
     ImageView img1;
     ImageView img2;
@@ -30,7 +32,7 @@ public class EstadoActivity extends AppCompatActivity {
         //
 
         if(true){
-
+            FirebaseAuth aut = FirebaseAuth.getInstance();
         }
         else{
 

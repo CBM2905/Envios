@@ -49,7 +49,7 @@ public class EstadoActivity extends AppCompatActivity {
         else if(estado.equals("ENTREGADO")){
             img4.setBackgroundColor(Color.BLACK);
         }
-        else{
+        else if(false){
 
         }
     }

@@ -29,6 +29,13 @@ public class EstadoActivity extends AppCompatActivity {
 
         //
 
+        if(true){
+
+        }
+        else{
+
+        }
+
 
     }
 }

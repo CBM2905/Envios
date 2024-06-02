@@ -109,7 +109,7 @@
                     android:layout_height="15dp" />
 
                 <RadioButton
-                    android:id="@+id/radioButton"
+                    android:id="@+id/Rb1"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:text="RECOGIDO" />
@@ -119,7 +119,7 @@
                     android:layout_height="15dp" />
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/Rb2"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:text="EN BODEGA" />
@@ -129,17 +129,17 @@
                     android:layout_height="15dp" />
 
                 <RadioButton
-                    android:id="@+id/radioButton3"
+                    android:id="@+id/Rb3"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:text="TRASPORTANDOSE" />
+                    android:text="TRANSPORTANDOSE" />
 
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="15dp" />
 
                 <RadioButton
-                    android:id="@+id/radioButton4"
+                    android:id="@+id/Rb4"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:text="ENTREGADO" />

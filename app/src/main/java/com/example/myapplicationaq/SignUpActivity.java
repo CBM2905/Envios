@@ -42,7 +42,6 @@ public class SignUpActivity extends AppCompatActivity implements PopupMenu.OnMen
         findViewById(R.id.buttonCreate).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 auth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {

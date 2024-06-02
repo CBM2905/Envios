@@ -30,24 +30,5 @@ public class EstadoActivity extends AppCompatActivity {
         //
 
 
-        img1 = findViewById(R.id.img1);
-        img2 = findViewById(R.id.img2);
-        img3 = findViewById(R.id.img3);
-        img4 = findViewById(R.id.img4);
-        Intent i = getIntent();
-        String estado = i.getStringExtra("st");
-        if(estado.equals("RECOGIDO")){
-            img1.setBackgroundColor(Color.BLACK);
-
-        }
-        else if(estado.equals("EN BODEGA")){
-            img2.setBackgroundColor(Color.BLACK);
-        }
-        else if(estado.equals("TRANSPORTANDOSE")){
-            img3.setBackgroundColor(Color.BLACK);
-        }
-        else if(estado.equals("ENTREGADO")){
-            img4.setBackgroundColor(Color.BLACK);
-        }
     }
 }

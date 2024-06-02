@@ -81,6 +81,7 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
         Button buttonCalendarCard4 = findViewById(R.id.button_calendar_card4);
         Button button4 = findViewById(R.id.button4);
         Button button5 = findViewById(R.id.button5);
+        Button button6 = findViewById(R.id.button6);
 
 
         ciudad = findViewById(R.id.Ciudad);
@@ -110,28 +111,9 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Oculta el CardView1 y muestra el CardView2 cuando se hace clic en el botón, y viceversa
-                if (cardView1.getVisibility() == View.VISIBLE) {
-                    cardView1.animate().alpha(0.0f).setDuration(300).withEndAction(new Runnable() {
-                        @Override
-                        public void run() {
-                            cardView1.setVisibility(View.GONE);
-                            cardView2.setAlpha(0.0f);
-                            cardView2.setVisibility(View.VISIBLE);
-                            cardView2.animate().alpha(1.0f).setDuration(300);
-                        }
-                    });
-                } else {
-                    cardView2.animate().alpha(0.0f).setDuration(300).withEndAction(new Runnable() {
-                        @Override
-                        public void run() {
-                            cardView2.setVisibility(View.GONE);
-                            cardView1.setAlpha(0.0f);
-                            cardView1.setVisibility(View.VISIBLE);
-                            cardView1.animate().alpha(1.0f).setDuration(300);
-                        }
-                    });
-                }
+                // Oculta el CardView2 y muestra el CardView3 cuando se hace clic en el botón
+                cardView1.setVisibility(View.GONE);
+                cardView2.setVisibility(View.VISIBLE);
             }
         });
 
@@ -230,6 +212,15 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
                 cardView6.setVisibility(View.VISIBLE);
             }
         });
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Enviar al usuario a la actividad de Home
+                Intent intent = new Intent(EnviaActivity.this, HomeActivity.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
+            }
+        });
     }
 
     // Método para mostrar el DatePickerDialog
@@ -258,7 +249,6 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
         if (cardView2.getVisibility() == View.VISIBLE) {
             // Si el CardView2 está visible, mostrar el CardView1 y ocultar el CardView2
             cardView2.setVisibility(View.GONE);
-            Log.d("here","dat");
             cardView1.setVisibility(View.VISIBLE);
 
         } else if (cardView3.getVisibility() == View.VISIBLE) {

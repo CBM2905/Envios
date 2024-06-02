@@ -56,6 +56,7 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu
                             String estado = (String)dc.get("ESTADO");
                             Intent I = new Intent(HomeActivity.this,EstadoActivity.class);
                             I.putExtra("st",estado);
+                            I.putExtra("id",id);
                             startActivity(I);
                         }
                     }

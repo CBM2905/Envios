@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -60,9 +61,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                         if(task.isSuccessful()){
                             DocumentSnapshot dc = task.getResult();
                             String estado = (String)dc.get("ESTADO");
-                            Intent I = new Intent(MainActivity.this,EstadoActivity.class);
-                            I.putExtra("st",estado);
-                            startActivity(I);
+                            Toast.makeText(getApplicationContext(),"El estado es: " + estado,Toast.LENGTH_LONG).show();
                         }
                     }
                 });

@@ -34,12 +34,12 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="400dp"
-        android:layout_height="66dp"
+        android:layout_width="274dp"
+        android:layout_height="79dp"
         android:layout_marginTop="24dp"
         android:text="VALIDACION DE PAQUETES"
         android:textColor="#ed7f19"
-        android:textSize="30.4sp"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"

@@ -44,18 +44,25 @@ public class HistorialActivity extends AppCompatActivity implements PopupMenu.On
         paquetes = new ArrayList<String>();
         historial = findViewById(R.id.historial);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("PAQUETE").whereEqualTo("Usuario",id).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()){
-                    for(QueryDocumentSnapshot qds : task.getResult()){
-                        Log.d("heree","paquete id " + qds.getId());
-                        paquetes.add("id paquete: " + qds.getId());
-                    }
-                    String[] arr = new String[paquetes.size()];
-                    paquetes.toArray(arr);
-                    ArrayAdapter<String> apt = new ArrayAdapter<String>(HistorialActivity.this,R.layout.activity_listview,arr);
-                    historial.setAdapter(apt);
+        db.collection("PAQUETE")
+                .whereEqualTo("Usuario", id)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for(QueryDocumentSnapshot qds : task.getResult()){
+                                Log.d("heree","paquete id " + qds.getId());
+                                // Obtener el ID, el estado y la ciudad del paquete
+                                String paqueteId = qds.getId();
+                                String ESTADO = qds.getString("ESTADO");
+                                String Ciudad = qds.getString("Ciudad"); // Asumiendo que tienes un campo "ciudad" en tus documentos
+                                paquetes.add("Guia: " + paqueteId + " || Estado: " + ESTADO + " || Ciudad: " + Ciudad);
+                            }
+                            String[] arr = new String[paquetes.size()];
+                            paquetes.toArray(arr);
+                            ArrayAdapter<String> apt = new ArrayAdapter<String>(HistorialActivity.this,R.layout.activity_listview,arr);
+                            historial.setAdapter(apt);
                 }
             }
         });

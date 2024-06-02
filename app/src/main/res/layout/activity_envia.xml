@@ -25,8 +25,8 @@
             android:src="@drawable/homeimagen" />
 
         <Space
-            android:layout_width="0dp"
-            android:layout_height="59dp"
+            android:layout_width="168dp"
+            android:layout_height="62dp"
             android:layout_weight="1" />
 
         <ImageButton
@@ -41,15 +41,26 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="200dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="24dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="32dp"
         android:text="ENVIOS"
         android:textColor="#e7191f"
         android:textSize="46.4sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.218"
+        app:layout_constraintHorizontal_bias="0.924"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutEnvia" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="126dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="112dp"
+        android:background="#fce8bc"
+        android:text="VOLVER AL INICIO"
+        android:textColor="#404040"
+        app:layout_constraintTop_toTopOf="@+id/linearLayoutEnvia"
+        tools:layout_editor_absoluteX="269dp" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView1"
@@ -88,8 +99,8 @@
                 android:layout_height="50dp"
                 android:background="#ececec"
                 android:ems="10"
-                android:inputType="text"
                 android:hint="CIUDAD"
+                android:inputType="text"
                 android:textSize="23sp" />
 
             <Space
@@ -102,8 +113,8 @@
                 android:layout_height="50dp"
                 android:background="#ececec"
                 android:ems="10"
-                android:inputType="text"
                 android:hint="DIRECCION DE INICIO"
+                android:inputType="text"
                 android:textSize="23sp" />
 
             <Space
@@ -116,8 +127,8 @@
                 android:layout_height="50dp"
                 android:background="#ececec"
                 android:ems="10"
-                android:inputType="text"
                 android:hint="DIRECCION DESTINO"
+                android:inputType="text"
                 android:textSize="23sp" />
 
             <Space
@@ -130,8 +141,8 @@
                 android:layout_height="50dp"
                 android:background="#ececec"
                 android:ems="10"
-                android:inputType="text"
                 android:hint="ADICIONAL"
+                android:inputType="text"
                 android:textSize="23sp" />
 
             <Space
@@ -204,8 +215,8 @@
                 android:layout_height="50dp"
                 android:background="#ececec"
                 android:ems="10"
-                android:inputType="text"
                 android:hint="NOMBRE DESTINATARIO"
+                android:inputType="text"
                 android:textSize="23sp" />
 
             <Space
@@ -218,8 +229,8 @@
                 android:layout_height="50dp"
                 android:background="#ececec"
                 android:ems="10"
-                android:inputType="phone"
                 android:hint="TELEFONO DESTINATARIO"
+                android:inputType="phone"
                 android:textSize="23sp" />
 
             <Space
@@ -261,7 +272,7 @@
         android:layout_marginTop="192dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -291,8 +302,8 @@
                 android:layout_height="50dp"
                 android:background="#ececec"
                 android:ems="10"
-                android:inputType="number"
                 android:hint="PESO DEL PAQUETE"
+                android:inputType="number"
                 android:textSize="23sp" />
 
             <Space
@@ -305,8 +316,8 @@
                 android:layout_height="50dp"
                 android:background="#ececec"
                 android:ems="10"
-                android:inputType="number"
                 android:hint="ALTO DEL PAQUETE"
+                android:inputType="number"
                 android:textSize="23sp" />
 
             <Space
@@ -319,8 +330,8 @@
                 android:layout_height="50dp"
                 android:background="#ececec"
                 android:ems="10"
-                android:inputType="number"
                 android:hint="ANCHO DEL PAQUETE"
+                android:inputType="number"
                 android:textSize="23sp" />
 
             <Space
@@ -333,8 +344,8 @@
                 android:layout_height="50dp"
                 android:background="#ececec"
                 android:ems="10"
-                android:inputType="number"
                 android:hint="VALOR DECLARADO DEL PAQUETE"
+                android:inputType="number"
                 android:textSize="20sp" />
 
             <Space
@@ -376,7 +387,7 @@
         android:layout_marginTop="192dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -399,6 +410,12 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="33dp" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -492,7 +509,7 @@
         android:layout_marginTop="192dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -534,8 +551,8 @@
                 android:layout_height="50dp"
                 android:background="#ececec"
                 android:ems="10"
-                android:inputType="number"
                 android:hint="NUMERO DE TARJETA"
+                android:inputType="number"
                 android:textSize="23sp" />
 
             <Space
@@ -558,17 +575,17 @@
                 android:id="@+id/button_calendar_card4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Selecciona la fecha"
-                android:layout_centerInParent="true"/>
+                android:layout_centerInParent="true"
+                android:text="Selecciona la fecha" />
 
             <TextView
                 android:id="@+id/textView_date_card4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/button_calendar_card4"
-                android:layout_marginTop="16dp"
                 android:layout_centerHorizontal="true"
-                android:text="Fecha de expiracion"/>
+                android:layout_marginTop="16dp"
+                android:text="Fecha de expiracion" />
 
             <Space
                 android:layout_width="match_parent"
@@ -609,7 +626,7 @@
         android:layout_marginTop="192dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -634,10 +651,17 @@
                 android:layout_height="22dp" />
 
             <TextView
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tu numero de Guia es:" />
+
+            <TextView
                 android:id="@+id/NumeroPaquete"
                 android:layout_width="199dp"
                 android:layout_height="77dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textIsSelectable="true" />
 
             <ImageView
                 android:id="@+id/my_image_view"
@@ -658,15 +682,6 @@
                     android:layout_width="25dp"
                     android:layout_height="42dp"
                     android:layout_weight="1" />
-
-                <Button
-                    android:id="@+id/button6"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#fce8bc"
-                    android:text="VOLVER AL INICIO"
-                    android:textColor="#404040" />
 
                 <Space
                     android:layout_width="14dp"

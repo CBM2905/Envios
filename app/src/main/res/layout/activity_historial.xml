@@ -40,8 +40,8 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="400dp"
-        android:layout_height="66dp"
+        android:layout_width="277dp"
+        android:layout_height="68dp"
         android:layout_marginTop="24dp"
         android:text="HISTORIAL"
         android:textColor="#edcb19"
@@ -62,80 +62,24 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="526dp"
             android:orientation="vertical"
             android:padding="10dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ececec"
-                android:orientation="horizontal">
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="26dp"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Guia"
-                    android:textColor="#0097b2"
-                    android:textSize="20.4sp" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Estado"
-                    android:textColor="#0097b2"
-                    android:textSize="20.4sp" />
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Detalle"
-                    android:textColor="#0097b2"
-                    android:textSize="20.4sp" />
-
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Calificar"
-                    android:textColor="#0097b2"
-                    android:textSize="20.4sp" />
-
-            </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="24dp" />
 
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="No hay datos."
-                android:textAlignment="center"
-                android:textSize="17.7dp" />
-
         </LinearLayout>
+
         <ListView
             android:id="@+id/historial"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_height="494dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

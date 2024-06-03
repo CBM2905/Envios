@@ -39,7 +39,7 @@ public class EstadoActivity extends AppCompatActivity implements PopupMenu.OnMen
 
                 PopupMenu popupMenu = new PopupMenu(EstadoActivity.this,v);
                 popupMenu.setOnMenuItemClickListener(EstadoActivity.this::onMenuItemClick);
-                popupMenu.inflate(R.menu.menu);
+                popupMenu.inflate(R.menu.menu_sesion);
                 popupMenu.show();
 
             }

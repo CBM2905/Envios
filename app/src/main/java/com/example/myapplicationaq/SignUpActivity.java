@@ -69,6 +69,45 @@ public class SignUpActivity extends AppCompatActivity implements PopupMenu.OnMen
                     passwordVerify.setError("Las contraseñas deben ser iguales");
                     return;
                 }
+                if (name.getText().toString().isEmpty()) {
+                    name.setError("El nombre no puede estar vacío");
+                    return;
+                }
+
+                if (lastName.getText().toString().isEmpty()) {
+                    lastName.setError("El apellido no puede estar vacío");
+                    return;
+                }
+
+                if (address.getText().toString().isEmpty()) {
+                    address.setError("La dirección no puede estar vacía");
+                    return;
+                }
+
+                if (user.getText().toString().isEmpty()) {
+                    user.setError("El usuario no puede estar vacío");
+                    return;
+                }
+
+                if (email.getText().toString().isEmpty()) {
+                    email.setError("El correo electrónico no puede estar vacío");
+                    return;
+                }
+
+                if (password.getText().toString().isEmpty()) {
+                    password.setError("La contraseña no puede estar vacía");
+                    return;
+                }
+
+                if (password.getText().toString().isEmpty()) {
+                    passwordVerify.setError("Debe confirmar la contraseña");
+                    return;
+                }
+
+                if (password.getText().toString().length() < 6) {
+                    password.setError("La contraseña debe tener al menos 6 caracteres");
+                    return;
+                }
 
                 Map<String, Object> mp = new HashMap<>();
                 mp.put("Nombre", name.getText().toString());

@@ -221,6 +221,7 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
                 // Enviar al usuario a la actividad de Home
                 Intent intent = new Intent(EnviaActivity.this, HomeActivity.class);
                 intent.putExtra("id", id);
+                intent.putExtra("ac","none");
                 startActivity(intent);
             }
         });

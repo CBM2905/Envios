@@ -81,9 +81,7 @@ public class EstadoActivity extends AppCompatActivity implements PopupMenu.OnMen
             return true;
         }
         else if (itemId == R.id.Home){
-            Intent it = new Intent(EstadoActivity.this,HomeActivity.class);
-            it.putExtra("id",id);
-            startActivity(it);
+            finish();
             return true;
         }
         return false;

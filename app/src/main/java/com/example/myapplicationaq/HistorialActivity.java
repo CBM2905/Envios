@@ -2,18 +2,34 @@ package com.example.myapplicationaq;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.PopupMenu;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class HistorialActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
+import java.util.List;
+
+public class HistorialActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+    ListView historial;
+    List<String> paquetes;
+    String id;
+    String ba;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +39,34 @@ public class HistorialActivity extends AppCompatActivity implements PopupMenu.On
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+        Intent It = getIntent();
+        id = It.getStringExtra("id");
+        ba = It.getStringExtra("ac");
+        paquetes = new ArrayList<String>();
+        historial = findViewById(R.id.historial);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("PAQUETE")
+                .whereEqualTo("Usuario", id)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for(QueryDocumentSnapshot qds : task.getResult()){
+                                Log.d("heree","paquete id " + qds.getId());
+                                // Obtener el ID, el estado y la ciudad del paquete
+                                String paqueteId = qds.getId();
+                                String ESTADO = qds.getString("ESTADO");
+                                String Ciudad = qds.getString("Ciudad"); // Asumiendo que tienes un campo "ciudad" en tus documentos
+                                paquetes.add("Guia: " + paqueteId + " || Estado: " + ESTADO + " || Ciudad: " + Ciudad);
+                            }
+                            String[] arr = new String[paquetes.size()];
+                            paquetes.toArray(arr);
+                            ArrayAdapter<String> apt = new ArrayAdapter<String>(HistorialActivity.this,R.layout.activity_listview,arr);
+                            historial.setAdapter(apt);
+                }
+            }
         });
         findViewById(R.id.menuButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,8 +84,15 @@ public class HistorialActivity extends AppCompatActivity implements PopupMenu.On
     public boolean onMenuItemClick(MenuItem item) {
         int itemId = item.getItemId();
         if(R.id.EnviaItem == itemId){
-            Intent it = new Intent(HistorialActivity.this,EnviaActivity.class);
-            startActivity(it);
+            if(ba.equals("en")){
+                finish();
+            }
+            else {
+                Intent it = new Intent(HistorialActivity.this, EnviaActivity.class);
+                it.putExtra("id", id);
+                it.putExtra("ac", "hi");
+                startActivity(it);
+            }
             return true;
         }
         else if (itemId == R.id.LogOut){
@@ -50,8 +101,17 @@ public class HistorialActivity extends AppCompatActivity implements PopupMenu.On
             return true;
         }
         else if (itemId == R.id.Home){
-            Intent it = new Intent(HistorialActivity.this,HomeActivity.class);
-            startActivity(it);
+            if(ba.equals("h")){
+                finish();
+            }
+            else {
+
+
+                Intent it = new Intent(HistorialActivity.this, HomeActivity.class);
+                it.putExtra("id", id);
+                it.putExtra("ac", "hi");
+                startActivity(it);
+            }
             return true;
         }
         return false;

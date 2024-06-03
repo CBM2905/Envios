@@ -8,16 +8,25 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
-
+    EditText id;
+    FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        db = FirebaseFirestore.getInstance();
+        id = findViewById(R.id.PaqueteId);
         Button b = findViewById(R.id.buttonBuscar);
         ImageButton b2 = findViewById(R.id.menuButton);
         b2.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +54,17 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(i);
+                String idPaquete = id.getText().toString();
+                db.collection("PAQUETE").document(idPaquete).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            DocumentSnapshot dc = task.getResult();
+                            String estado = (String)dc.get("ESTADO");
+                            Toast.makeText(getApplicationContext(),"El estado es: " + estado,Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
             }
         });
 

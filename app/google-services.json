@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "415942954393",
+    "project_id": "envia-f0dff",
+    "storage_bucket": "envia-f0dff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:415942954393:android:09275ff0c40329374ed708",
+        "android_client_info": {
+          "package_name": "com.example.myapplicationaq"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnjLLkFuxLwAOIoGAZR_YaIPRBMkSWYpo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

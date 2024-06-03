@@ -74,6 +74,7 @@
 
             <!-- Placeholder de Entrada -->
             <EditText
+                android:id="@+id/idPaquete"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -91,6 +92,7 @@
 
             <!-- Botón Buscar -->
             <Button
+                android:id="@+id/buscar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#009688"

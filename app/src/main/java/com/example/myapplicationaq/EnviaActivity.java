@@ -40,12 +40,15 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
 
     private String id;
 
+    private String ba;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_envia);
         Intent It = getIntent();
         id = It.getStringExtra("id");
+        ba = It.getStringExtra("ac");
         findViewById(R.id.menuButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -278,9 +281,15 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
     public boolean onMenuItemClick(MenuItem item) {
         int itemId = item.getItemId();
         if(R.id.HistorialItem == itemId){
-            Intent I = new Intent(EnviaActivity.this,HistorialActivity.class);
-            I.putExtra("id",id);
-            startActivity(I);
+            if(ba.equals("hi")){
+                finish();
+            }
+            else {
+                Intent I = new Intent(EnviaActivity.this, HistorialActivity.class);
+                I.putExtra("id", id);
+                I.putExtra("ac", "en");
+                startActivity(I);
+            }
             return true;
         }
         else if (itemId == R.id.LogOut){
@@ -289,9 +298,14 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
             return true;
         }
         else if (itemId == R.id.Home){
-            Intent I = new Intent(EnviaActivity.this,HomeActivity.class);
-            I.putExtra("id",id);
-            startActivity(I);
+            if(ba.equals("h")){
+                finish();
+            }
+            else {
+                Intent I = new Intent(EnviaActivity.this, HomeActivity.class);
+                I.putExtra("id", id);
+                startActivity(I);
+            }
             return true;
         }
         return false;

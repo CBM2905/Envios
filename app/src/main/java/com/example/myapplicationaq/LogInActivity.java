@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.PopupMenu;
+import android.widget.ProgressBar;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -24,6 +25,8 @@ public class LogInActivity extends AppCompatActivity implements PopupMenu.OnMenu
     EditText email;
     EditText Password;
     FirebaseAuth auth;
+
+    ProgressBar sppin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,8 @@ public class LogInActivity extends AppCompatActivity implements PopupMenu.OnMenu
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        sppin = findViewById(R.id.progressBar);
+        sppin.setVisibility(View.GONE);
         auth = FirebaseAuth.getInstance();
         email = findViewById(R.id.editTextTextEmailAddress);
         Password = findViewById(R.id.editTextTextPassword);
@@ -47,6 +52,7 @@ public class LogInActivity extends AppCompatActivity implements PopupMenu.OnMenu
                     startActivity(Admin);
                 }
                 else{
+                    sppin.setVisibility(View.VISIBLE);
                     auth.signInWithEmailAndPassword(EmailT,PasswordT).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -56,6 +62,8 @@ public class LogInActivity extends AppCompatActivity implements PopupMenu.OnMenu
 
                                 Intent I = new Intent(LogInActivity.this, HomeActivity.class);
                                 I.putExtra("id",id);
+                                I.putExtra("ac","none");
+                                sppin.setVisibility(View.GONE);
                                 startActivity(I);
                             }
                         }

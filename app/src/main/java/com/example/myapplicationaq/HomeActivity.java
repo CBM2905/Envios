@@ -29,6 +29,7 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu
     Button buscar;
 
     String id;
+    String ba;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,7 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu
         });
         Intent It = getIntent();
         id = It.getStringExtra("id");
+        ba = It.getStringExtra("ac");
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         buscar = findViewById(R.id.buscar);
         idPaqueteE = findViewById(R.id.idPaquete);
@@ -79,15 +81,29 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu
     public boolean onMenuItemClick(MenuItem item) {
         int itemId = item.getItemId();
         if(itemId == R.id.EnviaItem){
-            Intent envia = new Intent(HomeActivity.this, EnviaActivity.class);
-            envia.putExtra("id",id);
-            startActivity(envia);
+            if(ba.equals("en")){
+                finish();
+            }
+            else {
+                Intent envia = new Intent(HomeActivity.this, EnviaActivity.class);
+                envia.putExtra("id", id);
+                envia.putExtra("ac", "h");
+                startActivity(envia);
+            }
             return true;
         }
         else if (itemId == R.id.HistorialItem){
-            Intent historial = new Intent(HomeActivity.this, HistorialActivity.class);
-            historial.putExtra("id",id);
-            startActivity(historial);
+            if(ba.equals("hi")){
+                finish();
+            }
+            else {
+
+
+                Intent historial = new Intent(HomeActivity.this, HistorialActivity.class);
+                historial.putExtra("id", id);
+                historial.putExtra("ac", "h");
+                startActivity(historial);
+            }
             return true;
         }
         else if (itemId == R.id.LogOut){

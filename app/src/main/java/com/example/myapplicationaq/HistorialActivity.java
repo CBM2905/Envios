@@ -29,6 +29,7 @@ public class HistorialActivity extends AppCompatActivity implements PopupMenu.On
     ListView historial;
     List<String> paquetes;
     String id;
+    String ba;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,7 @@ public class HistorialActivity extends AppCompatActivity implements PopupMenu.On
         });
         Intent It = getIntent();
         id = It.getStringExtra("id");
+        ba = It.getStringExtra("ac");
         paquetes = new ArrayList<String>();
         historial = findViewById(R.id.historial);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -82,9 +84,15 @@ public class HistorialActivity extends AppCompatActivity implements PopupMenu.On
     public boolean onMenuItemClick(MenuItem item) {
         int itemId = item.getItemId();
         if(R.id.EnviaItem == itemId){
-            Intent it = new Intent(HistorialActivity.this,EnviaActivity.class);
-            it.putExtra("id",id);
-            startActivity(it);
+            if(ba.equals("en")){
+                finish();
+            }
+            else {
+                Intent it = new Intent(HistorialActivity.this, EnviaActivity.class);
+                it.putExtra("id", id);
+                it.putExtra("ac", "hi");
+                startActivity(it);
+            }
             return true;
         }
         else if (itemId == R.id.LogOut){
@@ -93,9 +101,17 @@ public class HistorialActivity extends AppCompatActivity implements PopupMenu.On
             return true;
         }
         else if (itemId == R.id.Home){
-            Intent it = new Intent(HistorialActivity.this,HomeActivity.class);
-            it.putExtra("id",id);
-            startActivity(it);
+            if(ba.equals("h")){
+                finish();
+            }
+            else {
+
+
+                Intent it = new Intent(HistorialActivity.this, HomeActivity.class);
+                it.putExtra("id", id);
+                it.putExtra("ac", "hi");
+                startActivity(it);
+            }
             return true;
         }
         return false;

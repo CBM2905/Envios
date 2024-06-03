@@ -3,7 +3,6 @@ package com.example.myapplicationaq;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -12,12 +11,12 @@ import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
@@ -87,7 +86,6 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
         Button button5 = findViewById(R.id.button5);
         Button button6 = findViewById(R.id.button6);
 
-
         ciudad = findViewById(R.id.Ciudad);
         DireccionD = findViewById(R.id.DireccionD);
         DireccionI = findViewById(R.id.DireccionI);
@@ -135,33 +133,37 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Oculta el CardView3 y muestra el CardView4 cuando se hace clic en el botón
-                cardView3.setVisibility(View.GONE);
-                Map<String, Object> mp = new HashMap<>();
-                mp.put("Ciudad", ciudad.getText().toString());
-                mp.put("Direccion Inicio", DireccionI.getText().toString());
-                mp.put("Direccion Destiono", DireccionD.getText().toString());
-                mp.put("Adicional", Adicional.getText().toString());
-                mp.put("Nombre Destinatario", NombreD.getText().toString());
-                mp.put("Telefono Destinatario", TelefonoD.getText().toString());
-                mp.put("Peso Paquete", PesoP.getText().toString());
-                mp.put("Alto Paquete", AltoP.getText().toString());
-                mp.put("Ancho Paqute", AnchoP.getText().toString());
-                mp.put("Valor Declarado", ValorD.getText().toString());
-                mp.put("ESTADO", "RECOGIDO");
-                mp.put("Usuario", id);
+                if (validateFields(ciudad, DireccionI, DireccionD, NombreD, TelefonoD, PesoP, AltoP, AnchoP, ValorD)) {
+                    // Oculta el CardView3 y muestra el CardView4 cuando se hace clic en el botón
+                    cardView3.setVisibility(View.GONE);
+                    Map<String, Object> mp = new HashMap<>();
+                    mp.put("Ciudad", ciudad.getText().toString());
+                    mp.put("Direccion Inicio", DireccionI.getText().toString());
+                    mp.put("Direccion Destiono", DireccionD.getText().toString());
+                    mp.put("Adicional", Adicional.getText().toString());
+                    mp.put("Nombre Destinatario", NombreD.getText().toString());
+                    mp.put("Telefono Destinatario", TelefonoD.getText().toString());
+                    mp.put("Peso Paquete", PesoP.getText().toString());
+                    mp.put("Alto Paquete", AltoP.getText().toString());
+                    mp.put("Ancho Paquete", AnchoP.getText().toString());
+                    mp.put("Valor Declarado", ValorD.getText().toString());
+                    mp.put("ESTADO", "RECOGIDO");
+                    mp.put("Usuario", id);
 
-                // Generar un ID numérico aleatorio
-                String numericId = generateNumericId();
-                mp.put("ID Paquete", numericId);
+                    // Generar un ID numérico aleatorio
+                    String numericId = generateNumericId();
+                    mp.put("ID Paquete", numericId);
 
-                db.collection("PAQUETE").document(numericId).set(mp).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        numeroId.setText(numericId);
-                    }
-                });
-                cardView6.setVisibility(View.VISIBLE);
+                    db.collection("PAQUETE").document(numericId).set(mp).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            numeroId.setText(numericId);
+                        }
+                    });
+                    cardView6.setVisibility(View.VISIBLE);
+                } else {
+                    Toast.makeText(EnviaActivity.this, "Complete todos los campos indicados con '*'", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -184,7 +186,6 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
         });
 
         // Configura el Spinner (dropdown menu)
-
 
         // Configura el listener de clic para el button4
         button4.setOnClickListener(new View.OnClickListener() {
@@ -231,6 +232,15 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
                 startActivity(intent);
             }
         });
+    }
+
+    private boolean validateFields(EditText... fields) {
+        for (EditText field : fields) {
+            if (field.getId() != R.id.Adicional && field.getText().toString().trim().isEmpty()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     // Método para mostrar el DatePickerDialog

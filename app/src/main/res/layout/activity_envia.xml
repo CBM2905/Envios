@@ -99,7 +99,7 @@
                 android:layout_height="50dp"
                 android:background="#ececec"
                 android:ems="10"
-                android:hint="CIUDAD"
+                android:hint="CIUDAD * "
                 android:inputType="text"
                 android:textSize="23sp" />
 
@@ -113,7 +113,7 @@
                 android:layout_height="50dp"
                 android:background="#ececec"
                 android:ems="10"
-                android:hint="DIRECCION DE INICIO"
+                android:hint="DIRECCION DE INICIO *"
                 android:inputType="text"
                 android:textSize="23sp" />
 
@@ -127,7 +127,7 @@
                 android:layout_height="50dp"
                 android:background="#ececec"
                 android:ems="10"
-                android:hint="DIRECCION DESTINO"
+                android:hint="DIRECCION DESTINO *"
                 android:inputType="text"
                 android:textSize="23sp" />
 
@@ -215,7 +215,7 @@
                 android:layout_height="50dp"
                 android:background="#ececec"
                 android:ems="10"
-                android:hint="NOMBRE DESTINATARIO"
+                android:hint="NOMBRE DESTINATARIO *"
                 android:inputType="text"
                 android:textSize="23sp" />
 
@@ -229,7 +229,7 @@
                 android:layout_height="50dp"
                 android:background="#ececec"
                 android:ems="10"
-                android:hint="TELEFONO DESTINATARIO"
+                android:hint="TELEFONO DESTINATARIO *"
                 android:inputType="phone"
                 android:textSize="23sp" />
 
@@ -302,7 +302,7 @@
                 android:layout_height="50dp"
                 android:background="#ececec"
                 android:ems="10"
-                android:hint="PESO DEL PAQUETE"
+                android:hint="PESO DEL PAQUETE *"
                 android:inputType="number"
                 android:textSize="23sp" />
 
@@ -316,7 +316,7 @@
                 android:layout_height="50dp"
                 android:background="#ececec"
                 android:ems="10"
-                android:hint="ALTO DEL PAQUETE"
+                android:hint="ALTO DEL PAQUETE *"
                 android:inputType="number"
                 android:textSize="23sp" />
 
@@ -330,7 +330,7 @@
                 android:layout_height="50dp"
                 android:background="#ececec"
                 android:ems="10"
-                android:hint="ANCHO DEL PAQUETE"
+                android:hint="ANCHO DEL PAQUETE *"
                 android:inputType="number"
                 android:textSize="23sp" />
 
@@ -344,7 +344,7 @@
                 android:layout_height="50dp"
                 android:background="#ececec"
                 android:ems="10"
-                android:hint="VALOR DECLARADO DEL PAQUETE"
+                android:hint="VALOR DECLARADO DEL PAQUETE *"
                 android:inputType="number"
                 android:textSize="20sp" />
 

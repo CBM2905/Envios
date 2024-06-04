@@ -51,31 +51,41 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String idPaquete = id.getText().toString();
-                db.collection("PAQUETE").document(idPaquete).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if(task.isSuccessful()){
-                            DocumentSnapshot dc = task.getResult();
-                            String estadoP = (String)dc.get("ESTADO");
-                            if(estadoP.equals(recogido.getText().toString())){
-                                recogido.setChecked(true);
+                if(idPaquete.isEmpty()){
+                    Toast.makeText(getApplicationContext(),"Inserte algun id",Toast.LENGTH_LONG).show();
+                }
+                else {
+                    db.collection("PAQUETE").document(idPaquete).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot dc = task.getResult();
+                                String estadoP = (String) dc.get("ESTADO");
+                                try {
+                                    if (estadoP.equals("null")) {
+                                        Toast.makeText(getApplicationContext(), "bad", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        if (estadoP.equals(recogido.getText().toString())) {
+                                            recogido.setChecked(true);
+                                        } else if (estadoP.equals(enBodega.getText().toString())) {
+                                            enBodega.setChecked(true);
+                                        } else if (estadoP.equals(transportandose.getText().toString())) {
+                                            transportandose.setChecked(true);
+                                        } else if (estadoP.equals(entregado.getText().toString())) {
+                                            entregado.setChecked(true);
+                                        }
+                                        Log.d("her", "dat" + dc.get("ESTADO") + "  " + recogido.getText().toString());
+                                    }
+                                }
+                                catch(Exception e){
+                                    Toast.makeText(getApplicationContext(),"bad",Toast.LENGTH_LONG).show();
+                                }
+                            } else {
+                                Toast.makeText(getApplicationContext(),"invalid da",Toast.LENGTH_SHORT).show();
                             }
-                            else if (estadoP.equals(enBodega.getText().toString())){
-                                enBodega.setChecked(true);
-                            }
-                            else if (estadoP.equals(transportandose.getText().toString())){
-                                transportandose.setChecked(true);
-                            }
-                            else if (estadoP.equals(entregado.getText().toString())){
-                                entregado.setChecked(true);
-                            }
-                            Log.d("her","dat" + dc.get("ESTADO") + "  "+ recogido.getText().toString());
                         }
-                        else{
-                            Log.d("her","this ");
-                        }
-                    }
-                });
+                    });
+                }
             }
         });
         findViewById(R.id.AdminButton2).setOnClickListener(new View.OnClickListener() {
@@ -83,6 +93,10 @@ public class AdminActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String idDoc = id.getText().toString();
+                if(idDoc.isEmpty()){
+                    Toast.makeText(getApplicationContext(),"Inserte Algun id",Toast.LENGTH_LONG).show();
+                }
+                else {
                 DocumentReference upd = db.collection("PAQUETE").document(idDoc);
                 String estado = "";
                 if(recogido.isChecked()){
@@ -102,7 +116,7 @@ public class AdminActivity extends AppCompatActivity {
                     public void onSuccess(Void unused) {
                         Toast.makeText(getApplicationContext(),"Actualizado",Toast.LENGTH_LONG).show();
                     }
-                });
+                });}
             }
         });
     }

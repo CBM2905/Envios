@@ -55,16 +55,34 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             @Override
             public void onClick(View v) {
                 String idPaquete = id.getText().toString();
+                if(idPaquete.isEmpty()){
+                    Toast.makeText(getApplicationContext(),"Ingrese algun dato",Toast.LENGTH_SHORT).show();
+                }
+                else{
                 db.collection("PAQUETE").document(idPaquete).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if(task.isSuccessful()){
+                        if(task.isSuccessful()) {
                             DocumentSnapshot dc = task.getResult();
-                            String estado = (String)dc.get("ESTADO");
-                            Toast.makeText(getApplicationContext(),"El estado es: " + estado,Toast.LENGTH_LONG).show();
+                            String estado = (String) dc.get("ESTADO");
+                            try {
+
+
+                                if (estado.equals("null")) {
+                                    Toast.makeText(getApplicationContext(), "no existe", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "El estado es: " + estado, Toast.LENGTH_LONG).show();
+                                }
+                            }
+                            catch (Exception e){
+                                Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_LONG).show();
+                            }
+                            }
+                        else{
+                            Toast.makeText(getApplicationContext(),"no exite o invalido",Toast.LENGTH_SHORT).show();
                         }
                     }
-                });
+                });}
             }
         });
 

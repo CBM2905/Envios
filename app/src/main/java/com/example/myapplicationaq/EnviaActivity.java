@@ -3,7 +3,6 @@ package com.example.myapplicationaq;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -12,17 +11,18 @@ import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
@@ -52,7 +52,7 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
         findViewById(R.id.menuButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopupMenu popupMenu = new PopupMenu(EnviaActivity.this,v);
+                PopupMenu popupMenu = new PopupMenu(EnviaActivity.this, v);
                 popupMenu.setOnMenuItemClickListener(EnviaActivity.this::onMenuItemClick);
                 popupMenu.inflate(R.menu.menu_sesion);
                 popupMenu.show();
@@ -85,7 +85,6 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
         Button button4 = findViewById(R.id.button4);
         Button button5 = findViewById(R.id.button5);
         Button button6 = findViewById(R.id.button6);
-
 
         ciudad = findViewById(R.id.Ciudad);
         DireccionD = findViewById(R.id.DireccionD);
@@ -134,28 +133,37 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Oculta el CardView3 y muestra el CardView4 cuando se hace clic en el botón
-                cardView3.setVisibility(View.GONE);
-                Map<String,Object> mp = new HashMap<>();
-                mp.put("Ciudad",ciudad.getText().toString());
-                mp.put("Direccion Inicio",DireccionI.getText().toString());
-                mp.put("Direccion Destiono",DireccionD.getText().toString());
-                mp.put("Adicional",Adicional.getText().toString());
-                mp.put("Nombre Destinatario",NombreD.getText().toString());
-                mp.put("Telefono Destinatario",TelefonoD.getText().toString());
-                mp.put("Peso Paquete", PesoP.getText().toString());
-                mp.put("Alto Paquete",AltoP.getText().toString());
-                mp.put("Ancho Paqute",AnchoP.getText().toString());
-                mp.put("Valor Declarado",ValorD.getText().toString());
-                mp.put("ESTADO","RECOGIDO");
-                mp.put("Usuario",id);
-                db.collection("PAQUETE").add(mp).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        numeroId.setText((String)documentReference.getId());
-                    }
-                });
-                cardView6.setVisibility(View.VISIBLE);
+                if (validateFields(ciudad, DireccionI, DireccionD, NombreD, TelefonoD, PesoP, AltoP, AnchoP, ValorD)) {
+                    // Oculta el CardView3 y muestra el CardView4 cuando se hace clic en el botón
+                    cardView3.setVisibility(View.GONE);
+                    Map<String, Object> mp = new HashMap<>();
+                    mp.put("Ciudad", ciudad.getText().toString());
+                    mp.put("Direccion Inicio", DireccionI.getText().toString());
+                    mp.put("Direccion Destiono", DireccionD.getText().toString());
+                    mp.put("Adicional", Adicional.getText().toString());
+                    mp.put("Nombre Destinatario", NombreD.getText().toString());
+                    mp.put("Telefono Destinatario", TelefonoD.getText().toString());
+                    mp.put("Peso Paquete", PesoP.getText().toString());
+                    mp.put("Alto Paquete", AltoP.getText().toString());
+                    mp.put("Ancho Paquete", AnchoP.getText().toString());
+                    mp.put("Valor Declarado", ValorD.getText().toString());
+                    mp.put("ESTADO", "RECOGIDO");
+                    mp.put("Usuario", id);
+
+                    // Generar un ID numérico aleatorio
+                    String numericId = generateNumericId();
+                    mp.put("ID Paquete", numericId);
+
+                    db.collection("PAQUETE").document(numericId).set(mp).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            numeroId.setText(numericId);
+                        }
+                    });
+                    cardView6.setVisibility(View.VISIBLE);
+                } else {
+                    Toast.makeText(EnviaActivity.this, "Complete todos los campos indicados con '*'", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -179,7 +187,6 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
 
         // Configura el Spinner (dropdown menu)
 
-
         // Configura el listener de clic para el button4
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,7 +203,7 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
                     cardView3.setVisibility(View.GONE);
                     cardView4.setVisibility(View.GONE);
                     cardView5.setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     cardView1.setVisibility(View.GONE);
                     cardView2.setVisibility(View.GONE);
                     cardView3.setVisibility(View.GONE);
@@ -221,10 +228,19 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
                 // Enviar al usuario a la actividad de Home
                 Intent intent = new Intent(EnviaActivity.this, HomeActivity.class);
                 intent.putExtra("id", id);
-                intent.putExtra("ac","none");
+                intent.putExtra("ac", "none");
                 startActivity(intent);
             }
         });
+    }
+
+    private boolean validateFields(EditText... fields) {
+        for (EditText field : fields) {
+            if (field.getId() != R.id.Adicional && field.getText().toString().trim().isEmpty()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     // Método para mostrar el DatePickerDialog
@@ -246,6 +262,15 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
         }, year, month, dayOfMonth);
 
         datePickerDialog.show();
+    }
+
+    private String generateNumericId() {
+        Random random = new Random();
+        StringBuilder idBuilder = new StringBuilder();
+        for (int i = 0; i < 10; i++) {
+            idBuilder.append(random.nextInt(10));
+        }
+        return idBuilder.toString();
     }
 
     @Override
@@ -281,28 +306,24 @@ public class EnviaActivity extends AppCompatActivity implements PopupMenu.OnMenu
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         int itemId = item.getItemId();
-        if(R.id.HistorialItem == itemId){
-            if(ba.equals("hi")){
+        if (R.id.HistorialItem == itemId) {
+            if (ba.equals("hi")) {
                 finish();
-            }
-            else {
+            } else {
                 Intent I = new Intent(EnviaActivity.this, HistorialActivity.class);
                 I.putExtra("id", id);
                 I.putExtra("ac", "en");
                 startActivity(I);
             }
             return true;
-        }
-        else if (itemId == R.id.LogOut){
-            Intent I = new Intent(EnviaActivity.this,MainActivity.class);
+        } else if (itemId == R.id.LogOut) {
+            Intent I = new Intent(EnviaActivity.this, MainActivity.class);
             startActivity(I);
             return true;
-        }
-        else if (itemId == R.id.Home){
-            if(ba.equals("h")){
+        } else if (itemId == R.id.Home) {
+            if (ba.equals("h")) {
                 finish();
-            }
-            else {
+            } else {
                 Intent I = new Intent(EnviaActivity.this, HomeActivity.class);
                 I.putExtra("id", id);
                 startActivity(I);

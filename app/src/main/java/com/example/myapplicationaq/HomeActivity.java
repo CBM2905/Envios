@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -50,19 +51,35 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu
             @Override
             public void onClick(View v) {
                 String idPaquete = idPaqueteE.getText().toString();
+                if(idPaquete.isEmpty()){
+                    Toast.makeText(getApplicationContext(),"Ingrese algun dato",Toast.LENGTH_SHORT).show();
+                }
+                else{
                 db.collection("PAQUETE").document(idPaquete).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if(task.isSuccessful()){
                             DocumentSnapshot dc = task.getResult();
                             String estado = (String)dc.get("ESTADO");
-                            Intent I = new Intent(HomeActivity.this,EstadoActivity.class);
-                            I.putExtra("st",estado);
-                            I.putExtra("id",id);
-                            startActivity(I);
+                            try {
+                                if (estado.equals("null")) {
+                                    Toast.makeText(getApplicationContext(), "bad data", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Intent I = new Intent(HomeActivity.this, EstadoActivity.class);
+                                    I.putExtra("st", estado);
+                                    I.putExtra("id", id);
+                                    startActivity(I);
+                                }
+                            }
+                            catch (Exception e){
+                                Toast.makeText(getApplicationContext(),"mal data",Toast.LENGTH_LONG).show();
+                            }
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(),"datos invalido",Toast.LENGTH_SHORT).show();
                         }
                     }
-                });
+                });}
             }
         });
         ImageButton Ibtn = findViewById(R.id.menuButton);
